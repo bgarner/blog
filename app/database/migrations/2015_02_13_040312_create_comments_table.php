@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRolesTable extends Migration {
+class CreateCommentsTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,10 +12,12 @@ class CreateRolesTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('roles', function($table)
+		Schema::create('comments', function($table)
 		{
 			$table->increments('id')->index();
-			$table->string('role');
+			$table->string('post_id')->references('posts')->on('id');
+			$table->string('author')->references('users')->on('id');
+			$table->longText('comment');
 			$table->timestamps();
 		});
 	}
