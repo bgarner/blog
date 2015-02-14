@@ -17,8 +17,10 @@ class CreateUsersTable extends Migration {
 			$table->increments('id')->index();
 			$table->string('email');
 			$table->string('username');
+			$table->string('first_name');
+			$table->string('last_name');
 			$table->string('password');
-			$table->integer('role')->references('id')->on('roles')->default(1);
+			$table->integer('role')->references('id')->on('roles');
 			$table->timestamps();
 		});
 	}
