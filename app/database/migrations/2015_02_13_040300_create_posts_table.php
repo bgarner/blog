@@ -15,7 +15,7 @@ class CreatePostsTable extends Migration {
 		Schema::create('posts', function($table)
 		{
 			$table->increments('id')->index();
-			$table->string('author')->references('users')->on('id');
+			$table->integer('author')->references('users')->on('id');
 			$table->longText('title');
 			$table->longText('content');
 			$table->timestamps();
@@ -29,7 +29,7 @@ class CreatePostsTable extends Migration {
 	 */
 	public function down()
 	{
-		//
+		Schema::drop("posts");
 	}
 
 }

@@ -15,8 +15,8 @@ class CreateUsersTable extends Migration {
 		Schema::create('users', function($table)
 		{
 			$table->increments('id')->index();
-			$table->string('email');
-			$table->string('username');
+			$table->string('email')->unique();
+			$table->string('username')->unique();
 			$table->string('first_name');
 			$table->string('last_name');
 			$table->string('password');
@@ -32,7 +32,7 @@ class CreateUsersTable extends Migration {
 	 */
 	public function down()
 	{
-		//
+		Schema::drop("users");
 	}
 
 }

@@ -11,6 +11,9 @@ class DatabaseSeeder extends Seeder {
 	{
 		Eloquent::unguard();
 
+		$this->call('RoleTableSeeder');
+		$this->command->info('Role table seeded!');
+
 		$this->call('UserTableSeeder');
 		$this->command->info('User table seeded!');
 	}
@@ -21,7 +24,8 @@ class RoleTableSeeder extends Seeder {
 
 	public function run()
 	{
-		DB:table('roles')->delete();
+		DB::table('roles')->delete();
+
 		Role::create(array('role' => 'commenter'));
 		Role::create(array('role' => 'author'));
 		Role::create(array('role' => 'admin'));

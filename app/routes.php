@@ -13,6 +13,8 @@
 
 Route::get('/', 'BlogController@index');
 
+Route::get('/admin', 'AdminController@showLogin');
+
 
 Route::get('/login', array('uses' => 'BaseController@showLogin'));
 Route::post('/login', array('uses' => 'BaseController@doLogin'));

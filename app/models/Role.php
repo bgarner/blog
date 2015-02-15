@@ -1,6 +1,6 @@
 <?php
 class Role extends Eloquent {
 
-    protected $table = 'users';
+    protected $table = 'roles';
 
 }
