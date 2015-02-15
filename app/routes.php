@@ -12,10 +12,33 @@
 */
 
 Route::get('/', 'BlogController@index');
+Route::get('/notallowed', function()
+{
+	return View::make('notallowed');
+});
 
-Route::get('/admin', 'AdminController@showLogin');
 
+Route::when('admin/*', 'auth');
+Route::get('/admin', 'AdminController@showAdminLogin');
+Route::post('/admin', 'BaseController@doLogin');
 
+//posts
+Route::get('/admin/posts', 'PostController@index'); //can delete from this view
+Route::get('/admin/post/{postid?}', 'PostController@showPost');  //view a single post
+Route::get('/admin/post/new', 'PostController@newPost');
+Route::get('/admin/post/{postid?}/edit', 'PostController@editPost');
+
+//comments
+Route::get('/admin/post/{postid?}/comments', 'CommentController@showComments'); //can delete from this view
+Route::get('/admin/post/{postid?}/comment/{commentid?}/edit', 'CommentController@editComment'); //edit comment
+
+//users
+Route::get('/admin/users', 'UserController@showUsers');
+Route::get('/admin/user/{userid?}', 'UserController@viewUser');
+Route::get('/admin/users/new', 'UserController@newUser');
+Route::get('/admin/user/{userid?}/edit', 'UserController@editUser');
+
+//commenter login/out
 Route::get('/login', array('uses' => 'BaseController@showLogin'));
 Route::post('/login', array('uses' => 'BaseController@doLogin'));
 Route::get('/logout', array('uses' => 'BaseController@doLogout'));

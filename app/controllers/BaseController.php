@@ -35,24 +35,49 @@ class BaseController extends Controller {
 		} else {
 			// create our user data for the authentication
 			$userdata = array(
+				// 'type' 		=> Input::get('logintype'),
 				'email'     => Input::get('email'),
 				'password'  => Input::get('password')
 			);
+
 			// attempt to do the login
+			switch(Input::get('logintype')){
+				case "admin":
+					$fail_redirect = "/admin";
+					$success_redirect = "/admin/posts";
+				break;
+
+				case "login":
+					$fail_redirect = "/login";
+					$success_redirect = "/";
+				break;
+
+				default:
+					$fail_redirect = "/login";
+					$success_redirect = "/";
+				break;
+			}
+
 			if (Auth::attempt($userdata)) {
 				// validation successful!
 				// redirect them to the secure section or whatever
-				return Redirect::to('/');
+
+				if(User::checkUserRole(Input::get('email')) > 1) {
+					return Redirect::to($success_redirect);
+				} else {
+					return Redirect::to("/notallowed");
+				}
+
 			} else {
 				// validation not successful, send back to form
-				return Redirect::to('/login');
+				return Redirect::to($fail_redirect);
 			}
 		}
 	}
 
 	protected function doLogout(){
 		Auth::logout();
-		return Redirect::to('/login');
+		return Redirect::to('/');
 	}
 
 }

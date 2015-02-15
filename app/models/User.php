@@ -23,4 +23,12 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	 */
 	protected $hidden = array('password', 'remember_token');
 
+	protected function checkUserRole($email){
+
+		$role = DB::table('users')
+			->select('role as r')
+			->where('email', '=', $email)
+			->get();
+		return $role[0]->r;
+	}
 }

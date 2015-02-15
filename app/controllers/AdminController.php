@@ -1,8 +1,12 @@
 <?php
 class AdminController extends BaseController{
 
-    protected function showLogin(){
+    protected function showAdminLogin(){
 
         return View::make('admin/login');
     }
+
+
+
+
 }
