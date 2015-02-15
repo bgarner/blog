@@ -11,7 +11,37 @@
 |
 */
 
-Route::get('/', function()
-{
-	return View::make('hello');
-});
+Route::get('/', 'BlogController@index');
+
+
+Route::get('/login', array('uses' => 'BaseController@showLogin'));
+Route::post('/login', array('uses' => 'BaseController@doLogin'));
+Route::get('/logout', array('uses' => 'BaseController@doLogout'));
+//Route::controller('/password', 'RemindersController');
+
+
+// Route::get('/', function()
+// {
+// 	return View::make('');
+// });
+
+/*
+/post/{id}
+
+****fontend routes
+/login
+/my_comments --list all of your comments
+/my_comments/{id}/edit  -- edit/delete a specific comment
+
+****backend routes
+/admin  (login)  -- restrict to authors/admin
+/admin/users
+/admin/users/create
+
+/admin/posts  -- show post and comments (show author posts OR all if admin)
+/admin/posts/new
+/admin/posts/{id}/edit
+
+/admin/comments/{id}/edit
+
+*/

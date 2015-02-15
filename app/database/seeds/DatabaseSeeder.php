@@ -34,7 +34,7 @@ class UserTableSeeder extends Seeder {
 	public function run()
 	{
 		DB::table('users')->delete();
-		
+
 		//make a bunch of COMMENTERS
 		User::create(array('email' => 'john.locke@gmail.com', 'username' => 'john', 'first_name' => 'John', 'last_name' => 'Locke', 'password' => Hash::make('secret'), 'role' => 1));
 		User::create(array('email' => 'sayid.jarrah@gmail.com', 'username' => 'sayid', 'first_name' => 'Sayid', 'last_name' => 'Jarrah', 'password' => Hash::make('secret'), 'role' => 1));
