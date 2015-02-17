@@ -31,7 +31,7 @@ Blog Posts
                     <td><a href="/admin/post/{{ $p->id }}">{{ $p->title }}</a></td>
                     <td><a href="/admin/user/{{ $p->author }}">{{ User::getRealName($p->author) }}</a>
                     <td>{{ $p->updated_at }}</td>
-                    <td><a href="/admin/post/{{ $p->id }}/comments">5</a></td>
+                    <td><a href="/admin/post/{{ $p->id }}/comments">{{ Comment::commentCount($p->id) }}</a></td>
                 </tr>
                 @endforeach
             <?php
@@ -41,9 +41,9 @@ Blog Posts
                 @foreach($posts as $p)
                 <tr>
                     <td><a href="/admin/post/{{ $p->id }}">{{ $p->title }}</a></td>
-                    <td><a href="/admin/user/{{ $p->author }}">{{ User::getAuthorName($p->author) }}</a>
+                    <td><a href="/admin/user/{{ $p->author }}">{{ User::getRealName($p->author) }}</a>
                     <td>{{ $p->updated_at }}</td>
-                    <td><a href="/admin/post/{{ $p->id }}/comments">5</a></td>
+                    <td><a href="/admin/post/{{ $p->id }}/comments"> {{ Comment::commentCount($p->id) }}  </a></td>
                 </tr>
                 @endforeach
             <?php

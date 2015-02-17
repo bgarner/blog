@@ -3,7 +3,7 @@ class BlogController extends \BaseController{
 
     public function index()
     {
-        $posts = BlogPost::all();
+        $posts = BlogPost::getAllPosts();
         return View::make('blog')
             ->with('posts', $posts);
     }

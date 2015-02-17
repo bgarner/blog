@@ -7,7 +7,7 @@ class BlogPost extends Eloquent {
     protected function getAllPosts()
     {
         $posts = DB::table('posts')
-            ->orderBy('updated_at', 'asc')
+            ->orderBy('updated_at', 'des')
             ->get();
         return $posts;
     }

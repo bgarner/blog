@@ -39,5 +39,14 @@ class Comment extends Eloquent {
         return $comments;
     }
 
+    protected function commentCount($id)
+    {
+        $commentCount = DB::table('comments')
+            ->where('post_id','=',$id)
+            ->count();
+
+        return $commentCount;
+    }
+
 
 }
