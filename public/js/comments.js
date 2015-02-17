@@ -17,15 +17,10 @@ $(document).ready(function() {
         if(commentVal == '') {
             $("#comment").after('<span class="error">Oops, you forgot to say something.</span>');
             hasError = true;
-            //$(window).scrollTop(0);
+
         }
 
         if(hasError == false) {
-
-
-            //$("#comment-form").append('<br /><br /><img style="height: 15px; width: 128px; float: left;" src="/images/ajax-loader.gif" alt="Sending" id="sending" />');
-            //$("#sendEmail li.buttons").append('<img src="img/loading.gif" alt="Loading" id="loading" />');
-
 
             $.post("/addcomment",
             {
