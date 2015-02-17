@@ -25,13 +25,13 @@ The Blog of Vincent the Dog
 		{{ $p->content }}
 
 		<br /><br />
-		<h3>{{ Comment::getCommentCount( $p->id ) }} comments  <small><a href="/read/{{ $p->id }}#comments">&raquo; View Comments</small></h3>
+		<h3>{{ Comment::getCommentCount( $p->id ) }} comments  <small><a href="/read/{{ $p->id }}#comments">&raquo; View Comments</a></small></h3>
 
 	</div><!-- /.blog-post -->
 
 	<h1>More Posts</h1>
 	@else
-		<a href="/read/{{$p->id}}">{{$p->title}} by {{ User::getRealName($p->author) }}</a><br />
+		{{ $p->updated_at }} : <a href="/read/{{$p->id}}">{{$p->title}} by {{ User::getRealName($p->author) }}</a><br />
 	@endif
 
 @endforeach
