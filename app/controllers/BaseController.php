@@ -62,7 +62,7 @@ class BaseController extends Controller {
 				// validation successful!
 				// redirect them to the secure section or whatever
 
-				if(User::checkUserRole(Input::get('email')) > 1) {
+				if(User::getRoleIdByEmail(Input::get('email')) > 1) {
 					return Redirect::to($success_redirect);
 				} else {
 					return Redirect::to("/notallowed");

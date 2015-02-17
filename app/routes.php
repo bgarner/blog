@@ -23,12 +23,14 @@ Route::get('/admin', 'AdminController@showAdminLogin');
 Route::post('/admin', 'BaseController@doLogin');
 
 //posts
-Route::get('/admin/posts', 'PostController@index'); //can delete from this view
-Route::get('/admin/post/{postid?}', 'PostController@showPost');  //view a single post
-Route::get('/admin/post/new', 'PostController@newPost');
-Route::get('/admin/post/{postid?}/edit', 'PostController@editPost');
+Route::get('/admin/posts', 'BlogPostController@index'); //can delete from this view
+Route::get('/admin/post/{postid?}', 'BlogPostController@show');  //view a single post
+Route::get('/admin/posts/new', 'BlogPostController@create');
+Route::post('/admin/posts/new', 'BlogPostController@save');
+Route::get('/admin/post/{postid?}/edit', 'BlogPostController@edit');
 
 //comments
+Route::get('/admin/comments', 'CommentController@getLatest'); //can delete from this view
 Route::get('/admin/post/{postid?}/comments', 'CommentController@showComments'); //can delete from this view
 Route::get('/admin/post/{postid?}/comment/{commentid?}/edit', 'CommentController@editComment'); //edit comment
 
