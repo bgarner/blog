@@ -14,14 +14,28 @@ The Blog of Vincent the Dog
 
 @section('content')
 
+<?php $i = 0; ?>
+@foreach($posts as $p)
+	<?php $i++; ?>
 
-<div class="blog-post">
-	<h2 class="blog-post-title">Sample blog post</h2>
-	<p class="blog-post-meta">January 1, 2014 by <a href="#">Mark</a></p>
+	@if($i == 1)
+	<div class="blog-post">
+		<h2 class="blog-post-title"><a href="/read/{{ $p->id }}">{{ $p->title }}</a></h2>
+		<p class="blog-post-meta">{{ $p->updated_at }} by <a href="/authors/{{ $p->author }}">{{ User::getRealName($p->author) }}</a></p>
+		{{ $p->content }}
+
+		<br /><br />
+		<h3>{{ Comment::getCommentCount( $p->id ) }} comments  <small><a href="/read/{{ $p->id }}#comments">&raquo; View Comments</small></h3>
+
+	</div><!-- /.blog-post -->
+
+	<h1>More Posts</h1>
+	@else
+		<a href="/read/{{$p->id}}">{{$p->title}} by {{ User::getRealName($p->author) }}</a><br />
+	@endif
+
+@endforeach
 
 
-
-
-</div><!-- /.blog-post -->
 
 @stop

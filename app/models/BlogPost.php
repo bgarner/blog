@@ -21,5 +21,14 @@ class BlogPost extends Eloquent {
         return $posts;
     }
 
+    protected function getBlogPost($id)
+    {
+        $post = DB::table('posts')
+            ->where('id','=',$id)
+            ->get();
+        return $post;
+    }
+
+
 
 }

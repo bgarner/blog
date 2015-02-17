@@ -41,36 +41,67 @@ class BaseController extends Controller {
 			);
 
 			// attempt to do the login
-			switch(Input::get('logintype')){
-				case "admin":
-					$fail_redirect = "/admin";
-					$success_redirect = "/admin/posts";
-				break;
-
-				case "login":
-					$fail_redirect = "/login";
-					$success_redirect = "/";
-				break;
-
-				default:
-					$fail_redirect = "/login";
-					$success_redirect = "/";
-				break;
-			}
+			// switch(Input::get('logintype')){
+			// 	case "admin":
+			// 		$fail_redirect = "/admin";
+			// 		$success_redirect = "/admin/posts";
+			// 	break;
+			//
+			// 	case "login":
+			// 		$fail_redirect = "/login";
+			// 		$success_redirect = "/";
+			// 	break;
+			//
+			// 	default:
+			// 		$fail_redirect = "/login";
+			// 		$success_redirect = "/";
+			// 	break;
+			// }
 
 			if (Auth::attempt($userdata)) {
 				// validation successful!
 				// redirect them to the secure section or whatever
 
-				if(User::getRoleIdByEmail(Input::get('email')) > 1) {
-					return Redirect::to($success_redirect);
-				} else {
-					return Redirect::to("/notallowed");
+
+				switch( User::getRoleIdByEmail(Input::get('email')) ){
+					case "2":
+					case "3":
+						$fail_redirect = "/admin";
+						$success_redirect = "/admin/posts";
+
+							if(Input::get('logintype') == 'admin') {
+								return Redirect::to($success_redirect);
+							} else {
+								return Redirect::to("/notallowed");
+							}
+
+					break;
+
+					case "1": //commenter
+						$fail_redirect = "/login";
+						$success_redirect = "/";
+
+							if(Input::get('logintype') == 'login') {
+								return Redirect::to($success_redirect);
+							} else {
+								return Redirect::to($fail_redirect);
+							}
+
+					break;
+
+					default:
+						$fail_redirect = "/login";
+						$success_redirect = "/";
+						return Redirect::to($success_redirect);
+
+					break;
 				}
+
+
 
 			} else {
 				// validation not successful, send back to form
-				return Redirect::to($fail_redirect);
+				return Redirect::to("/login");
 			}
 		}
 	}

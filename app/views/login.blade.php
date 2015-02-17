@@ -22,7 +22,7 @@ The Blog of Vincent the Dog
         @endforeach
     @endif
 
-    <form class="form-signin">
+    {{ Form::open(array('url' => 'login', 'class' => 'form-signin')) }}
         <input type="hidden" name="logintype" value="{{ Route::getCurrentRoute()->getPath() }}">
         <h2 class="form-signin-heading">Please Sign In</h2>
         <label for="inputEmail" class="sr-only">Email address</label>
@@ -35,7 +35,7 @@ The Blog of Vincent the Dog
             </label>
         </div>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-    </form>
+    {{ Form::close() }}
 
 
 

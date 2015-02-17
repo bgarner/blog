@@ -11,13 +11,13 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="/admin/posts">Posts</a></li>
+                <li><a href="/admin/posts">Posts</a></li>
                 <li><a href="/admin/comments">Comments</a></li>
                 <li><a href="/admin/users">Users</a></li>
             </ul>
 
-            <div class="navbar-form navbar-right" style="color: #fff;">
-            Welcome {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}! <a href="/logout"><i class="icon-signin"></i> Log Out</a
+            <div class="navbar-form pull-right" style="color: #fff;padding-top: 8px;">
+            Welcome, {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}! <a class="btn btn-success btn-xs" href="/admin/posts/new"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> New Post</a> <a class="btn btn-danger btn-xs" href="/logout"><span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span> Log Out</a>
             </div>
         </div><!--/.nav-collapse -->
     </div>

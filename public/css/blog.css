@@ -72,6 +72,8 @@ h6, .h6 {
     border-left: 5px solid transparent;
 }
 
+.blog-nav div a{ color: #fff !important; text-decoration: underline; }
+
 
 /*
 * Blog name and description

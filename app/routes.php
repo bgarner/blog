@@ -12,6 +12,14 @@
 */
 
 Route::get('/', 'BlogController@index');
+
+Route::get('/read/{id?}', 'BlogController@read');
+
+Route::get('/authors', 'BlogController@authors');
+Route::get('/author/{id?}', 'BlogController@authorProfile');
+
+Route::post('/addcomment', 'CommentController@addComment');
+
 Route::get('/notallowed', function()
 {
 	return View::make('notallowed');
@@ -37,7 +45,9 @@ Route::get('/admin/post/{postid?}/comment/{commentid?}/edit', 'CommentController
 //users
 Route::get('/admin/users', 'UserController@showUsers');
 Route::get('/admin/user/{userid?}', 'UserController@viewUser');
-Route::get('/admin/users/new', 'UserController@newUser');
+Route::get('/admin/user/comments/{userid?}', 'UserController@viewUserComments');
+Route::get('/admin/user/posts/{userid?}', 'UserController@viewUserPosts');
+Route::get('/admin/user/new', 'UserController@newUser');
 Route::get('/admin/user/{userid?}/edit', 'UserController@editUser');
 
 //commenter login/out
@@ -56,19 +66,8 @@ Route::get('/logout', array('uses' => 'BaseController@doLogout'));
 /post/{id}
 
 ****fontend routes
-/login
 /my_comments --list all of your comments
 /my_comments/{id}/edit  -- edit/delete a specific comment
 
-****backend routes
-/admin  (login)  -- restrict to authors/admin
-/admin/users
-/admin/users/create
-
-/admin/posts  -- show post and comments (show author posts OR all if admin)
-/admin/posts/new
-/admin/posts/{id}/edit
-
-/admin/comments/{id}/edit
 
 */
