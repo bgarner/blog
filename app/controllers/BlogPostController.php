@@ -3,23 +3,12 @@ class BlogPostController extends BaseController{
 
     protected function index()
     {
-        //show all of the posts, ordered by data updated
-
         return View::make('admin/home');
-
-    }
-
-    protected function show($id)
-    {
-        //show a specific post
-        //return View::make('admin/posts');
     }
 
     protected function create()
     {
-
         return View::make('admin/posts/newpost');
-
     }
 
     protected function save()
@@ -29,20 +18,33 @@ class BlogPostController extends BaseController{
             'title' => Input::get('blogposttitle'),
             'content' => Input::get('blogpostcontent')
         );
-        
+
         $blogpost = BlogPost::create($blogPostData);
         $blogpost->save();
-
     }
 
-    protected function edit()
+    protected function edit($id)
     {
-
-        //return View::make('admin/editpost');
-        return "edit post";
+        $blogpost = DB::table('posts')
+            ->find($id);
+        return View::make('admin/posts/editpost')
+            ->with('blogpost', $blogpost);
     }
 
+    protected function update()
+    {
+        $id= Input::get('post_id');
 
+        $blogPostData = array(
+            'title' => Input::get('blogposttitle'),
+            'content' => Input::get('blogpostcontent')
+        );
 
+        BlogPost::find($id)->update($blogPostData);
 
+        $message = "Post Updated!";
+        return View::make('admin/home')
+            ->with('message', $message);
+
+    }
 }

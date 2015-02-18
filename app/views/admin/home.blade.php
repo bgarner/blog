@@ -9,6 +9,10 @@ Blog Posts
 @include('admin/template/nav')
 
 <div class="container" style="margin-top: 90px;">
+
+    @if(isset($message))
+        <div class="alert alert-success" role="alert"><strong>Excellent!</strong> {{ $message }} </div>
+    @endif
     <h1>Blog Posts <a href="/admin/posts/new" class="btn btn-lg btn-success pull-right"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> New Blog Post</a></h1>
 
     <table class="table table-hover">
@@ -31,7 +35,7 @@ Blog Posts
                     <td><a href="/admin/post/{{ $p->id }}">{{ $p->title }}</a></td>
                     <td><a href="/admin/user/{{ $p->author }}">{{ User::getRealName($p->author) }}</a>
                     <td>{{ $p->updated_at }}</td>
-                    <td><a href="/admin/post/{{ $p->id }}/comments">{{ Comment::commentCount($p->id) }}</a></td>
+                    <td><a href="/admin/comments/{{ $p->id }}">{{ Comment::commentCount($p->id) }}</a></td>
                 </tr>
                 @endforeach
             <?php
@@ -43,7 +47,7 @@ Blog Posts
                     <td><a href="/admin/post/{{ $p->id }}">{{ $p->title }}</a></td>
                     <td><a href="/admin/user/{{ $p->author }}">{{ User::getRealName($p->author) }}</a>
                     <td>{{ $p->updated_at }}</td>
-                    <td><a href="/admin/post/{{ $p->id }}/comments"> {{ Comment::commentCount($p->id) }}  </a></td>
+                    <td><a href="/admin/comments/{{ $p->id }}"> {{ Comment::commentCount($p->id) }}  </a></td>
                 </tr>
                 @endforeach
             <?php

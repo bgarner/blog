@@ -25,7 +25,6 @@ Our Authors
 
             <p><strong><a href="/read/{{$p->id}}">{{ $p->title }}</a></strong> - {{ $p->updated_at }}</p>
 
-
         @endforeach
     @else
         <p>No posts by this author yet.</p>
@@ -36,7 +35,7 @@ Our Authors
     @if( count($comments) > 0 )
         @foreach($comments as $c)
             <?php $postwithcomment = BlogPost::getBlogPost( $c->post_id ); ?>
-        <p><strong><a href="/read/{{$c->post_id}}">{{$postwithcomment[0]->title}}</strong></a><br />&ldquo;{{ $c->comment }}&rdquo; <br /><small>on {{ $c->updated_at }}</small></p>
+        <p><strong><a href="/read/{{$c->post_id}}">{{$postwithcomment->title}}</strong></a><br />&ldquo;{{ $c->comment }}&rdquo; <br /><small>on {{ $c->updated_at }}</small></p>
         <br />
 
 

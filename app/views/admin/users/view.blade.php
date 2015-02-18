@@ -57,13 +57,12 @@ Users
 
         @foreach($comments as $c)
         <tr>
-            <td><a href="/admin/post/{{ $c->post_id }}">{{ BlogPost::getBlogPost($c->post_id)[0]->title }}</a></td>
+            <td><a href="/admin/post/{{ $c->post_id }}">{{ BlogPost::getBlogPost($c->post_id)->title }}</a></td>
             <td>{{ User::getRealName($c->author) }} <a href="/admin/user/{{ $c->author }}">({{ User::getUsername($c->author) }})</a></td>
             <td>{{ $c->comment }}</td>
             <td>
                 <a href="/read/{{ $c->post_id }}" target="_blank" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-eye-open" aira-hidden="true"></span> View on Blog</a>
-                <a href="/admin/comment/edit/{{$c->id}}" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Edit</a>
-                <a href="/admin/comment/delete/{{$c->id}}" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete</a>
+                <span data-comment="{{ $c->id }}" id="comment{{$c->id}}" class="comment-delete btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete</span>
 
             </td>
         </tr>

@@ -40,4 +40,30 @@ $(document).ready(function() {
 
         return false;
     });
+
+
+    $(document).on('click','.comment-delete',function(){
+
+        var commentidVal = $(this).attr('data-comment');
+        var selector = "#comment"+commentidVal;
+
+        $.post("/deletecomment",{ comment_id: commentidVal })
+            .done( function(data){
+                $(selector).closest('tr').fadeOut(2000);
+            });
+        return false;
+    });
+
+    $(document).on('click','.comment-delete-inblog',function(){
+
+        var commentidVal = $(this).attr('data-comment');
+        var selector = "#comment"+commentidVal;
+
+        $.post("/deletecomment",{ comment_id: commentidVal })
+        .done( function(data){
+            $(selector).closest('div').fadeOut(2000);
+        });
+        return false;
+    });
+
 });

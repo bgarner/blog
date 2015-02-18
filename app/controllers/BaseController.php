@@ -40,29 +40,9 @@ class BaseController extends Controller {
 				'password'  => Input::get('password')
 			);
 
-			// attempt to do the login
-			// switch(Input::get('logintype')){
-			// 	case "admin":
-			// 		$fail_redirect = "/admin";
-			// 		$success_redirect = "/admin/posts";
-			// 	break;
-			//
-			// 	case "login":
-			// 		$fail_redirect = "/login";
-			// 		$success_redirect = "/";
-			// 	break;
-			//
-			// 	default:
-			// 		$fail_redirect = "/login";
-			// 		$success_redirect = "/";
-			// 	break;
-			// }
-
 			if (Auth::attempt($userdata)) {
 				// validation successful!
 				// redirect them to the secure section or whatever
-
-
 				switch( User::getRoleIdByEmail(Input::get('email')) ){
 					case "2":
 					case "3":
@@ -96,8 +76,6 @@ class BaseController extends Controller {
 
 					break;
 				}
-
-
 
 			} else {
 				// validation not successful, send back to form

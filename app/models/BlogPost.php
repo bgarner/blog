@@ -24,8 +24,7 @@ class BlogPost extends Eloquent {
     protected function getBlogPost($id)
     {
         $post = DB::table('posts')
-            ->where('id','=',$id)
-            ->get();
+            ->find($id);
         return $post;
     }
 

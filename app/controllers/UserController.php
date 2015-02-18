@@ -2,7 +2,9 @@
 class UserController extends BaseController{
 
     protected function showUsers(){
-        return View::make('/admin/users/users');
+        $users = User::getAllUsers();
+        return View::make('/admin/users/users')
+            ->with('users', $users);
     }
 
     protected function viewUser($id){
@@ -19,5 +21,5 @@ class UserController extends BaseController{
         return View::make('/admin/users/edit');
     }
 
-    
+
 }

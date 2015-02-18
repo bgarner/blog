@@ -15,12 +15,12 @@ Admin Login
 
     <input type="hidden" id="authorid" name="authorid" value="{{ Auth::user()->id }}">
     <div class="form-group">
-        <label for="exampleInputEmail1">Title</label>
+        <label>Title</label>
         <input type="text" class="form-control" id="blogposttitle" name="blogposttitle" placeholder="Blog Post Title">
     </div>
 
     <div class="form-group">
-        <label for="exampleInputEmail1">Blog Post</label>
+        <label>Blog Post</label>
         <textarea class="form-control" rows="10" id="blogpostcontent" name="blogpostcontent"></textarea>
     </div>
 

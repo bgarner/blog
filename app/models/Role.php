@@ -6,9 +6,9 @@ class Role extends Eloquent {
     protected function getRole($id)
     {
         $role = DB::table('roles')
-        ->select('role')
-        ->where('id','=',$id)
-        ->get();
+            ->select('role')
+            ->where('id','=',$id)
+            ->get();
         return $role[0]->role;
     }
 }

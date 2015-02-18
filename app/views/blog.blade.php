@@ -21,7 +21,7 @@ The Blog of Vincent the Dog
 	@if($i == 1)
 	<div class="blog-post">
 		<h2 class="blog-post-title"><a href="/read/{{ $p->id }}">{{ $p->title }}</a></h2>
-		<p class="blog-post-meta">{{ $p->updated_at }} by <a href="/authors/{{ $p->author }}">{{ User::getRealName($p->author) }}</a></p>
+		<p class="blog-post-meta">{{ $p->updated_at }} by <a href="/author/{{ $p->author }}">{{ User::getRealName($p->author) }}</a></p>
 		{{ $p->content }}
 
 		<br /><br />

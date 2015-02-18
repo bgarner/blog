@@ -19,6 +19,7 @@ Route::get('/authors', 'BlogController@authors');
 Route::get('/author/{id?}', 'BlogController@authorProfile');
 
 Route::post('/addcomment', 'CommentController@addComment');
+Route::post('/deletecomment', 'CommentController@deleteComment');
 
 Route::get('/notallowed', function()
 {
@@ -31,16 +32,19 @@ Route::get('/admin', 'AdminController@showAdminLogin');
 Route::post('/admin', 'BaseController@doLogin');
 
 //posts
-Route::get('/admin/posts', 'BlogPostController@index'); //can delete from this view
-Route::get('/admin/post/{postid?}', 'BlogPostController@show');  //view a single post
+Route::get('/admin/posts', 'BlogPostController@index');
+//edit post
+Route::get('/admin/post/{postid?}', 'BlogPostController@edit');
+Route::post('/admin/post/edit', 'BlogPostController@update');
+//newpost
 Route::get('/admin/posts/new', 'BlogPostController@create');
 Route::post('/admin/posts/new', 'BlogPostController@save');
-Route::get('/admin/post/{postid?}/edit', 'BlogPostController@edit');
+
 
 //comments
 Route::get('/admin/comments', 'CommentController@getLatest'); //can delete from this view
-Route::get('/admin/post/{postid?}/comments', 'CommentController@showComments'); //can delete from this view
-Route::get('/admin/post/{postid?}/comment/{commentid?}/edit', 'CommentController@editComment'); //edit comment
+Route::get('/admin/comments/{postid?}', 'CommentController@showComments'); //can delete from this view
+ //edit comment
 
 //users
 Route::get('/admin/users', 'UserController@showUsers');

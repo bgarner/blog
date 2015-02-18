@@ -17,44 +17,19 @@ Users
                 <th>Username</th>
                 <th>Real Name</th>
                 <th>Role</th>
-                <th>Comments</th>
-                <th>Posts</th>
             </tr>
         </thead>
-        <?php
-        $role = Role::getRole(Auth::user()->role);
-        if($role == "admin"){
-            $users = User::getAllUsers();
-            ?>
-                @foreach($users as $u)
-                <tr>
-                    <td><a href="/admin/user/{{ $u->id }}">{{ $u->username }}</a></td>
-                    <td><a href="/admin/user/{{ $u->id }}">{{ $u->first_name }} {{ $u->last_name }}</a>
-                    <td>{{ Role::getRole($u->role) }}</td>
 
-                    <td><a href="/admin/user/comments/{{ $u->id }}">View Comments</a></td>
+            @foreach($users as $u)
+            <tr>
+                <td><a href="/admin/user/{{ $u->id }}">{{ $u->username }}</a></td>
+                <td><a href="/admin/user/{{ $u->id }}">{{ $u->first_name }} {{ $u->last_name }}</a>
+                <td>{{ Role::getRole($u->role) }}</td>
+            </tr>
+            @endforeach
 
-                    <?php
+        </table>
 
-                    if( Role::getRole($u->role) != "commenter" ) { ?>
-                        <td><a href="/admin/user/posts/{{ $u->id }}">View Posts</a></td>
-                    <?php } else { ?>
-                        <td></td>
-                    <?php } ?>
+</div> <!-- /container -->
 
-                </tr>
-                @endforeach
-            <?php
-            } else {
-            ?>
-            </table>
-
-            <h2>Sorry, only the admin can view this section</h2>
-
-            <?php
-            }
-            ?>
-
-        </div> <!-- /container -->
-
-        @stop
+@stop

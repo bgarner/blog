@@ -3,17 +3,25 @@ class CommentController extends BaseController{
 
     protected function getLatest()
     {
-        return View::make('/admin/comments/latest');
+        $comments = Comment::getAllComments();
+        return View::make('/admin/comments/latest')
+            ->with('comments', $comments);
     }
 
-    protected function showComments($postid)
+    protected function showComments($id)
     {
-
+        $comments = Comment::getCommentsByPost($id);
+        $blogpost = BlogPost::getBlogPost($id);
+        return View::make('admin/comments/postcomments')
+            ->with('comments', $comments)
+            ->with('blogpost', $blogpost);
     }
 
-    protected function editComment($id)
+    protected function deleteComment()
     {
-
+        $id = Input::get('comment_id');
+        $comment = Comment::find($id);
+        $comment->delete();
     }
 
     public function addComment()

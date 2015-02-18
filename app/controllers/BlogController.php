@@ -11,7 +11,6 @@ class BlogController extends \BaseController{
     public function read($id)
     {
         $post = BlogPost::find($id);
-        //dd($post->author);
         $author = User::find($post->author);
         $comments = Comment::getCommentsByPost($id);
         return View::make('read')
