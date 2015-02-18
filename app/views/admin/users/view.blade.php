@@ -37,11 +37,7 @@ Users
         @endforeach
     </table>
     @endif
-
-
-    <?php
-    $comments = Comment::getCommentsByUser($user->id);
-    ?>
+    
     <h2>Comments</h2>
     @if($comments)
 

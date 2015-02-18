@@ -9,8 +9,10 @@ class UserController extends BaseController{
 
     protected function viewUser($id){
         $user = User::find($id);
+        $comments = Comment::getCommentsByUser($id);
         return View::make('/admin/users/view')
-            ->with('user', $user);
+            ->with('user', $user)
+            ->with('comments', $comments);
     }
 
     protected function newUser(){
