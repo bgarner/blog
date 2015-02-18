@@ -30,11 +30,12 @@ Our Authors
             @foreach($comments as $c)
             <div><small>At {{ $c->updated_at }} <em><strong>{{ User::getUsername($c->author) }}</strong></em> said:</small><br />
                 {{ $c->comment }}
-                @if( Auth::user()->id == $c->author )
+
+                @if( Auth::id() == $c->author )
                 <span data-comment="{{ $c->id }}" id="comment{{$c->id}}" class="pull-right comment-delete-inblog btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete</span>
                 @endif
             </div>
-            
+
             <br />
             @endforeach
         @else
