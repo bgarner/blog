@@ -21,6 +21,10 @@ class BlogPostController extends BaseController{
 
         $blogpost = BlogPost::create($blogPostData);
         $blogpost->save();
+
+        $message = "New post created!";
+        return View::make('admin/home')
+            ->with('message', $message);
     }
 
     protected function edit($id)
